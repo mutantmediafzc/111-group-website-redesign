@@ -1,0 +1,283 @@
+@import "tailwindcss";
+
+/* =========================================================
+   111 GROUP — EDITORIAL LUXURY DESIGN SYSTEM
+   Palette: Gold (#C5A059) · Charcoal (#0E0F12) · Ivory (#F8F6F2)
+   ========================================================= */
+
+/* --- Poppins (body) from public/brand/fonts ---------------- */
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url("/brand/fonts/Poppins-ExtraLight.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/brand/fonts/Poppins-Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/brand/fonts/Poppins-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/brand/fonts/Poppins-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/brand/fonts/Poppins-SemiBold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/brand/fonts/Poppins-Bold.ttf") format("truetype");
+}
+
+/* =========================================================
+   THEME TOKENS (Tailwind v4 @theme)
+   ========================================================= */
+@theme {
+  /* Core palette */
+  --color-gold-50:  #FBF7EE;
+  --color-gold-100: #F3E9CD;
+  --color-gold-200: #E6D39B;
+  --color-gold-300: #D8BC6A;
+  --color-gold-400: #C5A059;   /* brand */
+  --color-gold-500: #A8874A;
+  --color-gold-600: #8A6F3C;
+  --color-gold-700: #6B562F;
+  --color-gold-800: #4D3F22;
+  --color-gold-900: #2F2615;
+
+  --color-charcoal-50:  #F5F5F6;
+  --color-charcoal-100: #E6E6E8;
+  --color-charcoal-200: #C5C5C9;
+  --color-charcoal-300: #8B8C92;
+  --color-charcoal-400: #5C5D64;
+  --color-charcoal-500: #3A3B41;
+  --color-charcoal-600: #25262B;
+  --color-charcoal-700: #1A1B1E;  /* brand dark */
+  --color-charcoal-800: #121317;
+  --color-charcoal-900: #0A0B0E;
+
+  --color-ivory: #F4F4F4;
+  --color-bone:  #EBEBEB;
+
+  /* Semantic — light mode defaults */
+  --color-bg: #F4F4F4;
+  --color-bg-elev: #FFFFFF;
+  --color-bg-soft: #EBEBEB;
+  --color-fg: #0E0F12;
+  --color-fg-soft: #3A3B41;
+  --color-fg-muted: #6B6D76;
+  --color-line: rgba(14, 15, 18, 0.10);
+  --color-line-strong: rgba(14, 15, 18, 0.22);
+  --color-brand: #C5A059;
+  --color-brand-hover: #B08E47;
+
+  /* Fonts */
+  --font-sans: "Poppins", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Poppins", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Radii / shadow tuned for editorial luxury */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+
+  /* Tracking */
+  --tracking-eyebrow: 0.22em;
+}
+
+/* =========================================================
+   DARK MODE (class strategy — toggled via <html class="dark">)
+   ========================================================= */
+@custom-variant dark (&:where(.dark, .dark *));
+
+.dark {
+  --color-bg: #0A0B0E;
+  --color-bg-elev: #121317;
+  --color-bg-soft: #1A1B1E;
+  --color-fg: #F5F3EC;
+  --color-fg-soft: #C5C5C9;
+  --color-fg-muted: #8B8C92;
+  --color-line: rgba(245, 243, 236, 0.10);
+  --color-line-strong: rgba(245, 243, 236, 0.22);
+  --color-brand: #D8BC6A;
+  --color-brand-hover: #E6D39B;
+}
+
+/* =========================================================
+   BASE
+   ========================================================= */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+html, body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  letter-spacing: -0.005em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+::selection {
+  background: var(--color-brand);
+  color: #0A0B0E;
+}
+.font-display { font-family: var(--font-display); }
+.font-mono { font-family: var(--font-mono); }
+
+/* Utility: hairline borders using tokens */
+.border-line { border-color: var(--color-line); }
+.border-line-strong { border-color: var(--color-line-strong); }
+.text-brand { color: var(--color-brand); }
+.bg-brand { background-color: var(--color-brand); }
+.text-fg { color: var(--color-fg); }
+.text-fg-soft { color: var(--color-fg-soft); }
+.text-fg-muted { color: var(--color-fg-muted); }
+.bg-bg { background-color: var(--color-bg); }
+.bg-bg-elev { background-color: var(--color-bg-elev); }
+.bg-bg-soft { background-color: var(--color-bg-soft); }
+
+/* Grain overlay — subtle film texture for luxury feel */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Hairline gold divider */
+.divider-gold {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-brand) 20%, var(--color-brand) 80%, transparent);
+  opacity: 0.5;
+}
+
+/* Ticker / marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 45s linear infinite;
+}
+
+/* GSAP: Hide elements until JS ready (prevents FOUC of pre-animation state) */
+.gsap-reveal { visibility: hidden; }
+.gsap-word { display: inline-block; overflow: hidden; vertical-align: top; }
+.gsap-word > span { display: inline-block; transform: translateY(110%); }
+
+/* Link underline animation */
+.link-underline {
+  position: relative;
+  display: inline-block;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.link-underline:hover::after { transform-origin: left; transform: scaleX(1); }
+
+/* Button — primary gold */
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-brand);
+  color: #ffffff;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  border: 1px solid var(--color-brand);
+  border-radius: 6px;
+  transition: all 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+  position: relative;
+  overflow: hidden;
+}
+.btn-gold:hover {
+  background: transparent;
+  color: var(--color-brand);
+}
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  color: var(--color-fg);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 6px;
+  transition: all 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.btn-ghost:hover {
+  border-color: var(--color-brand);
+  color: var(--color-brand);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--color-line-strong);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-brand); }
+
+/* Number displays — tabular */
+.tabular { font-variant-numeric: tabular-nums; }
+
+/* Editorial eyebrow */
+.eyebrow {
+  font-size: 0.70rem;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--color-fg-muted);
+}
+.eyebrow-gold { color: var(--color-brand); }
+
+/* Display heading sizing */
+.h-display {
+  font-family: var(--font-display);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
