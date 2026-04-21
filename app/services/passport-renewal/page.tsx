@@ -1,3 +1,4 @@
+"use client";
 import ServiceDetailTemplate from "../components/ServiceDetailTemplate";
 
 const benefits = [
