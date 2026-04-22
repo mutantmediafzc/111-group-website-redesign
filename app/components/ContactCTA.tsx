@@ -23,7 +23,7 @@ const BULLETS = [
 
 export default function ContactCTA() {
   return (
-    <section className="bg-bg-elev py-24 lg:py-32">
+    <section className="bg-bg-elev pt-8 pb-24 lg:pt-10 lg:pb-32">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
         <div className="relative overflow-hidden rounded-3xl min-h-[280px] flex items-center">
 

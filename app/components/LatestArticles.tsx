@@ -57,7 +57,7 @@ export default function LatestArticles() {
   const rest = ARTICLES.slice(1);
 
   return (
-    <section className="bg-bg-elev py-24 lg:py-32">
+    <section className="bg-bg-elev pt-24 pb-12 lg:pt-32 lg:pb-16">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
 
         {/* Header */}
