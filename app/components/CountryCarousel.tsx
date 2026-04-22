@@ -2,102 +2,26 @@
 
 import { useRef, useCallback } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { gsap } from "gsap";
 
 const COUNTRIES = [
-  {
-    name: "Antigua & Barbuda",
-    type: "Citizenship",
-    price: "from $100,000",
-    img: "/brand/images/country-images/antigua.png",
-    flag: "/brand/images/country-flags-3d/antigua.png",
-    flagEmoji: "🇦🇬",
-  },
-  {
-    name: "Dominica",
-    type: "Citizenship",
-    price: "from $100,000",
-    img: "/brand/images/country-images/dominica.png",
-    flag: "/brand/images/country-flags-3d/dominica.png",
-    flagEmoji: "🇩🇲",
-  },
-  {
-    name: "Egypt",
-    type: "Citizenship",
-    price: "from $250,000",
-    img: "/brand/images/country-images/egypt.png",
-    flag: "/brand/images/country-flags-3d/egypt.png",
-    flagEmoji: "🇪🇬",
-  },
-  {
-    name: "Grenada",
-    type: "Citizenship",
-    price: "from $150,000",
-    img: "/brand/images/country-images/grenada.png",
-    flag: "/brand/images/country-flags-3d/Grenada.png",
-    flagEmoji: "🇬🇩",
-  },
-  {
-    name: "Jordan",
-    type: "Citizenship",
-    price: "from $750,000",
-    img: "/brand/images/country-images/jordan.png",
-    flag: "/brand/images/country-flags-3d/jordan.png",
-    flagEmoji: "🇯🇴",
-  },
-  {
-    name: "St Kitts & Nevis",
-    type: "Citizenship",
-    price: "from $250,000",
-    img: "/brand/images/country-images/saint-kitts-and-nevis.png",
-    flag: "/brand/images/country-flags-3d/saint-kitts.png",
-    flagEmoji: "🇰🇳",
-  },
-  {
-    name: "Saint Lucia",
-    type: "Citizenship",
-    price: "from $100,000",
-    img: "/brand/images/country-images/saint-lucia.png",
-    flag: "/brand/images/country-flags-3d/st-lucia.png",
-    flagEmoji: "🇱🇨",
-  },
-  {
-    name: "Turkey",
-    type: "Citizenship",
-    price: "from $400,000",
-    img: "/brand/images/country-images/turkey.png",
-    flag: "/brand/images/country-flags-3d/turkety.png",
-    flagEmoji: "🇹🇷",
-  },
-  {
-    name: "Vanuatu",
-    type: "Citizenship",
-    price: "from $130,000",
-    img: "/brand/images/country-images/vanuatu.png",
-    flag: "/brand/images/country-flags-3d/vanuatu.png",
-    flagEmoji: "🇻🇺",
-  },
-  {
-    name: "Nauru",
-    type: "Citizenship",
-    price: "from $105,000",
-    img: "/brand/images/country-images/nauru.png",
-    flag: null,
-    flagEmoji: "🇳🇷",
-  },
-  {
-    name: "São Tomé & Príncipe",
-    type: "Citizenship",
-    price: "from $50,000",
-    img: "/brand/images/country-images/sao-tome-and-principe.png",
-    flag: null,
-    flagEmoji: "🇸🇹",
-  },
+  { name: "Antigua & Barbuda", type: "Citizenship", price: "from $100,000", img: "/brand/images/country-images/antigua.png", flag: "/brand/images/country-flags-3d/antigua.png", flagEmoji: "🇦🇬", href: "/countries/antigua-barbuda" },
+  { name: "Dominica", type: "Citizenship", price: "from $100,000", img: "/brand/images/country-images/dominica.png", flag: "/brand/images/country-flags-3d/dominica.png", flagEmoji: "🇩🇲", href: "/countries/dominica" },
+  { name: "Egypt", type: "Citizenship", price: "from $250,000", img: "/brand/images/country-images/egypt.png", flag: "/brand/images/country-flags-3d/egypt.png", flagEmoji: "🇪🇬", href: "/countries/egypt" },
+  { name: "Grenada", type: "Citizenship", price: "from $150,000", img: "/brand/images/country-images/grenada.png", flag: "/brand/images/country-flags-3d/Grenada.png", flagEmoji: "🇬🇩", href: "/countries/grenada" },
+  { name: "Jordan", type: "Citizenship", price: "from $750,000", img: "/brand/images/country-images/jordan.png", flag: "/brand/images/country-flags-3d/jordan.png", flagEmoji: "🇯🇴", href: "/countries/jordan" },
+  { name: "St Kitts & Nevis", type: "Citizenship", price: "from $250,000", img: "/brand/images/country-images/saint-kitts-and-nevis.png", flag: "/brand/images/country-flags-3d/saint-kitts.png", flagEmoji: "🇰🇳", href: "/countries/st-kitts-nevis" },
+  { name: "Saint Lucia", type: "Citizenship", price: "from $100,000", img: "/brand/images/country-images/saint-lucia.png", flag: "/brand/images/country-flags-3d/st-lucia.png", flagEmoji: "🇱🇨", href: "/countries/saint-lucia" },
+  { name: "Turkey", type: "Citizenship", price: "from $400,000", img: "/brand/images/country-images/turkey.png", flag: "/brand/images/country-flags-3d/turkety.png", flagEmoji: "🇹🇷", href: "/countries/turkey" },
+  { name: "Vanuatu", type: "Citizenship", price: "from $130,000", img: "/brand/images/country-images/vanuatu.png", flag: "/brand/images/country-flags-3d/vanuatu.png", flagEmoji: "🇻🇺", href: "/countries/vanuatu" },
+  { name: "Nauru", type: "Citizenship", price: "from $105,000", img: "/brand/images/country-images/nauru.png", flag: null, flagEmoji: "🇳🇷", href: "/countries/nauru" },
+  { name: "São Tomé & Príncipe", type: "Citizenship", price: "from $50,000", img: "/brand/images/country-images/sao-tome-and-principe.png", flag: null, flagEmoji: "🇸🇹", href: "/countries/sao-tome-principe" },
 ];
 
 const ITEMS = [...COUNTRIES, ...COUNTRIES];
 
-function CountryCard({ c }: { c: typeof COUNTRIES[0] }) {
+function CountryCard({ c }: { c: (typeof COUNTRIES)[0] }) {
   const imgRef = useRef<HTMLDivElement>(null);
 
   const handleEnter = useCallback(() => {
@@ -109,8 +33,8 @@ function CountryCard({ c }: { c: typeof COUNTRIES[0] }) {
   }, []);
 
   return (
-    <a
-      href="#contact"
+    <Link
+      href={c.href}
       className="group relative flex-none h-[360px] overflow-hidden rounded-2xl cursor-pointer"
       style={{ textDecoration: "none", width: "var(--card-w, 280px)" }}
       onMouseEnter={handleEnter}
@@ -153,7 +77,7 @@ function CountryCard({ c }: { c: typeof COUNTRIES[0] }) {
           <span className="text-white/50 group-hover:text-white transition-colors text-lg">›</span>
         </div>
       </div>
-    </a>
+    </Link>
   );
 }
 
